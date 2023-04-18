@@ -1,0 +1,16 @@
+.logo-img {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    background-attachment: fixed;
+  }
+  
+  .a {
+    background-color: black;
+  }
+  
+  li.nav-link NavDropdown.nav-link.title {
+    color: whitesmoke;
+    background-color: white;
+  }
