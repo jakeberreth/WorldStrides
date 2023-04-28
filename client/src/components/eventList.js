@@ -38,7 +38,7 @@ export default function EventList() {
   ////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     async function getEvents() {
-      const response = await fetch(`http://localhost:2500/event/`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/event/`)
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -58,7 +58,7 @@ export default function EventList() {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   async function deleteEvent(id) {
-    await fetch(`http://localhost:2500/event/${id}`, {
+    await fetch(`https://worldstrides-backend.onrender.com/event/${id}`, {
       method: "DELETE"
     })
     const newEvents = events.filter((el) => el._id !== id)

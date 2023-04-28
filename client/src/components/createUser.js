@@ -124,7 +124,7 @@ export default function CreateUser() {
 
     const newPerson = { ...form }
 
-    await fetch("http://localhost:2500/user/add", {
+    await fetch("https://worldstrides-backend.onrender.com/user/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

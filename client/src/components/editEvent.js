@@ -86,7 +86,7 @@ export default function EditEvent() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString()
-      const response = await fetch(`http://localhost:2500/event/${params.id.toString()}`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/event/${params.id.toString()}`)
 
       if (!response.ok) {
         const message = `Hello An error has occurred: ${response.statusText}`
@@ -142,7 +142,7 @@ export default function EditEvent() {
       assignment:    form.assignment
     }
   
-    await fetch(`http://localhost:2500/updateEvent/${params.id}`, {
+    await fetch(`https://worldstrides-backend.onrender.com/updateEvent/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {

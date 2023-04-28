@@ -88,7 +88,7 @@ export default function EditUser() {
     async function fetchData() {
       const id = params.id.toString()
       const response = await fetch(
-        `http://localhost:2500/user/${params.id.toString()}`
+        `https://worldstrides-backend.onrender.com/user/${params.id.toString()}`
       )
 
       if (!response.ok) {
@@ -152,7 +152,7 @@ export default function EditUser() {
       state:     form.state
     }
 
-    await fetch(`http://localhost:2500/updateUser/${params.id}`, {
+    await fetch(`https://worldstrides-backend.onrender.com/updateUser/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {

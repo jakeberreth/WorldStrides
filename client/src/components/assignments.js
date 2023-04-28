@@ -30,7 +30,7 @@ export default function Assignments() {
   ////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     async function getEvents() {
-      const response = await fetch(`http://localhost:2500/event/`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/event/`)
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -53,7 +53,7 @@ export default function Assignments() {
   ////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch(`http://localhost:2500/user/`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/user/`)
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -250,15 +250,27 @@ export default function Assignments() {
         console.log("AFTER AVAILABILITY CHECK")
         console.log(usersPool)
 
-        minIndex = checkProximity(tempEvents, i, usersPool)
-        usersPool[minIndex].assignmentCount--
-        console.log("AFTER PROXIMITY CHECK")
-        console.log("MATCH", usersPool[minIndex])
+        // minIndex = checkProximity(tempEvents, i, usersPool)
+        // usersPool[minIndex].assignmentCount--
+        // console.log("AFTER PROXIMITY CHECK")
+        // console.log("MATCH", usersPool[minIndex])
 
-        tempEvents[i].assignment = usersPool[minIndex].name
+        let highest = 0
+        let max = 0
+        let highest2 = 0
+        for(let a = 0; a < usersPool.length; ++a)
+        {
+          if (usersPool[a].assignmentCount > max)
+          {
+            highest = a
+            max = usersPool[a].assignmentCount
+          }
+        }
+
+        tempEvents[i].assignment = usersPool[highest].name
+        usersPool[highest].assignmentCount--
         update(tempEvents[i], tempEvents[i]._id)
       }
-
       navigate("/assignments")
     }  
     console.log(rank)
@@ -287,17 +299,31 @@ export default function Assignments() {
         console.log("AFTER ALMA MATER CHECK")
         console.log(usersPool)
 
-        minIndex = checkProximity(tempEvents, i, usersPool)
-        usersPool[minIndex].assignmentCount--
-        console.log("AFTER PROXIMITY CHECK")
-        console.log("MATCH", usersPool[minIndex])
+        let highest = 0
+        let max = 0
+        let highest2 = 0
+        for(let a = 0; a < usersPool.length; ++a)
+        {
+          if (usersPool[a].assignmentCount > max)
+          {
+            highest2 = a
+            max = usersPool[a].assignmentCount
+          }
+        }
 
-        tempEvents[i].assignment = usersPool[minIndex].name
+        // minIndex = checkProximity(tempEvents, i, usersPool)
+        // usersPool[minIndex].assignmentCount--
+        // console.log("AFTER PROXIMITY CHECK")
+        // console.log("MATCH", usersPool[minIndex])
+
+        //tempEvents[i].assignment = usersPool[minIndex].name
+
+        tempEvents[i].assignment = usersPool[highest2].name
+        usersPool[highest2].assignmentCount--
         update(tempEvents[i], tempEvents[i]._id)
       }
-
       navigate("/assignments")
-    } 
+    }
   }
       
   ////////////////////////////////////////////////////////////////////////////////
@@ -317,7 +343,7 @@ export default function Assignments() {
       assignment:    event.assignment,
     }
 
-    await fetch(`http://localhost:2500/updateEvent/${id}`, {
+    await fetch(`https://worldstrides-backend.onrender.com/updateEvent/${id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {
@@ -356,8 +382,8 @@ export default function Assignments() {
             className="form-control"
             onChange={(e) => updateRank(e)}
           >
-            <option>Availability, Proximity</option>
-            <option>Availability, Alma Mater, Proximity</option>
+            <option>Availability</option>
+            <option>Availability, Alma Mater</option>
           </select>
         </div>
         <br></br>
@@ -371,8 +397,8 @@ export default function Assignments() {
           <tr>
             <th>Institution</th>
             <th>State</th>
-            <th>Event Priority</th>
             <th>Event Type</th>
+            <th>Event Priority</th>
             <th>Start Date/Time</th>
             <th>End Date/Time</th>
             <th>Assignment</th>

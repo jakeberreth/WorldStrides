@@ -21,7 +21,7 @@ function Navbar() {
   ////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch(`http://localhost:2500/user/`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/user/`)
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -42,7 +42,7 @@ function Navbar() {
   ////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch(`http://localhost:2500/user/`)
+      const response = await fetch(`https://worldstrides-backend.onrender.com/user/`)
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -259,15 +259,6 @@ function Navbar() {
                       style={menustyles.buttonStyle}
                     >
                       Create Event
-                    </NavLink>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item eventKey="4.5">
-                    <NavLink
-                      className="nav-link"
-                      to="/eventList"
-                      style={menustyles.buttonStyle}
-                    >
-                      EventList
                     </NavLink>
                   </NavDropdown.Item>
                 </NavDropdown>

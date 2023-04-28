@@ -123,7 +123,7 @@ export default function CreateEvent() {
     newEvent.endDate = endDateString
     newEvent.assignment = "Not Assigned"
 
-    await fetch("http://localhost:2500/event/add", {
+    await fetch("https://worldstrides-backend.onrender.com/event/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

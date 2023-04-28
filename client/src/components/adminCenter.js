@@ -78,7 +78,7 @@ export default function AdminCenter() {
       form.eventPriority = newEventPriority
       form.assignment    = newAssignment
 
-      fetch("http://localhost:2500/event/add", {
+      fetch("https://worldstrides-backend.onrender.com/event/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
